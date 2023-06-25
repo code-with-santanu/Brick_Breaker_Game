@@ -58,26 +58,29 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	public void paint(Graphics g)
 	{
 		 //background paint
-		 g.setColor(Color.cyan);
+		 g.setColor(Color.black);
 		 g.fillRect(1, 1, frameWidth, frameHeight);
 		 
 		 //display of map
 		 map.draw((Graphics2D)g);
 		 
-		 g.setColor(Color.yellow);
+		//Border paint
+		 g.setColor(Color.red);
 		 g.fillRect(0, 0, 3, 592);
 		 g.fillRect(0, 0, 692, 3);
 		 g.fillRect(691, 0, 3, 592);
 		 
-		 g.setColor(Color.blue);
+		//Movable bar paint
+		 g.setColor(Color.cyan);
 		 g.fillRect(playerX,  playerY,  100, 8);
 		 
-		 g.setColor(Color.red);
+		//Ball paint
+		 g.setColor(Color.green);
 		 g.fillOval(ballPosX, ballPosY, 20, 20);
 		 
 		 //score Display
-		 g.setColor(Color.black);
-		 g.setFont(new Font("serif", Font.BOLD, 25));
+		 g.setColor(Color.yellow);
+		 g.setFont(new Font("serif", Font.BOLD, 30));
 		 g.drawString("" + score, 590, 30);
 		 
 		 
@@ -114,7 +117,6 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
 		timer.start();
 		
@@ -228,8 +230,11 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 			if(play == false)
 			{
 				play = true;
-				ballPosX = 120;
-				ballPosY = 350;
+
+				Random random1 = new Random();
+				ballPosX = random1.nextInt((frameWidth-50) - 10) + 10;;
+				ballPosY = random1.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
+				
 				ballXdir = -1;
 				ballYdir = -2;
 				score =0;

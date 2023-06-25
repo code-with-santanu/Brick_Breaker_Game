@@ -35,13 +35,13 @@ public class MapGenerator {
 			{
 				if(map[i][j] > 0)
 				{
-					g.setColor(Color.MAGENTA);
+					g.setColor(Color.blue);
 					// 80 and 50 is to position of bricks
 					g.fillRect(j*brickWidth +80, i*brickHeight +50, brickWidth, brickHeight);
 					
 					//dividing the bricks
 					g.setStroke(new BasicStroke(3));
-					g.setColor(Color.cyan); //color in between bricks
+					g.setColor(Color.black); //color in between bricks
 					g.drawRect(j*brickWidth +80, i*brickHeight +50, brickWidth, brickHeight);
 					
 				}
