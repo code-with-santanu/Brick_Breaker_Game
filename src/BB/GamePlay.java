@@ -66,9 +66,9 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 		 
 		//Border paint
 		 g.setColor(Color.red);
-		 g.fillRect(0, 0, 3, 592);
-		 g.fillRect(0, 0, 692, 3);
-		 g.fillRect(691, 0, 3, 592);
+		 g.fillRect(0, 0, 3, frameHeight);	//left Border
+		 g.fillRect(0, 0, frameWidth, 3);	//top Border
+		 g.fillRect((frameWidth-16), 0, 3, frameHeight);	//right Border
 		 
 		//Movable bar paint
 		 g.setColor(Color.cyan);
@@ -123,7 +123,7 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 		if(play)
 		{
 			// Ball - Pedal interaction
-			if(new Rectangle(ballPosX, ballPosY, 20, 30).intersects(new Rectangle(playerX, 550, 100, 8)))
+			if(new Rectangle(ballPosX, ballPosY, 20, 30).intersects(new Rectangle(playerX, playerY, 100, 8)))
 			{
 				ballYdir = -ballYdir;
 			}
@@ -181,7 +181,7 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 				ballYdir = -ballYdir;
 			}
 			
-			if(ballPosX > 670)
+			if(ballPosX > (frameWidth-30))
 			{
 				ballXdir = -ballXdir;
 			}
