@@ -31,15 +31,20 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	private Timer timer;
 	private int delay = 0;	//speed of the movement of the ball
 	
+	//Movable Pedal data
 	private int playerX = frameWidth/2; //x  position of the movable bar
 	private int playerY = frameHeight-50; //y position of the movable bar 
+	private int playerWidth = 100;
+	private int playerHeight = 8;
 	
 	Random random = new Random();
 	
 	//Initial position of the ball
 	private int ballPosX = random.nextInt((frameWidth-50) - 10) + 10;;
 	private int ballPosY = random.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
-
+	private int ballWidth = 20;
+	private int ballHeight = 20;
+	
 	private int ballXdir=-1;
 	private int ballYdir=-2;
 	
@@ -70,9 +75,9 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 		 g.fillRect(0, 0, frameWidth, 3);	//top Border
 		 g.fillRect((frameWidth-16), 0, 3, frameHeight);	//right Border
 		 
-		//Movable bar paint
+		//Movable Pedal paint
 		 g.setColor(Color.cyan);
-		 g.fillRect(playerX,  playerY,  100, 8);
+		 g.fillRect(playerX,  playerY,  playerWidth, playerHeight);
 		 
 		//Ball paint
 		 g.setColor(Color.green);
@@ -123,7 +128,7 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 		if(play)
 		{
 			// Ball - Pedal interaction
-			if(new Rectangle(ballPosX, ballPosY, 20, 30).intersects(new Rectangle(playerX, playerY, 100, 8)))
+			if(new Rectangle(ballPosX, ballPosY, ballWidth, ballHeight).intersects(new Rectangle(playerX, playerY, playerWidth, playerHeight)))
 			{
 				ballYdir = -ballYdir;
 			}
@@ -245,9 +250,23 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 			}
 		}
 		
+		
+		//Pause the game by pressing P Key
+		if(e.getKeyCode() == KeyEvent.VK_P)
+		{
+			if(timer.isRunning())
+			{
+				timer.stop();
+			}
+			else
+			{
+				timer.start();
+			}
+		}
+		
 	}
 	
-	
+    //Movement of the Pedal
 	public void moveRight()
 	{
 		play =true;
