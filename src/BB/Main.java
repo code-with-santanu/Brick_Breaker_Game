@@ -15,8 +15,8 @@ public class Main {
 		
 		obj.setBounds(450, 50,frameWidth, frameHeight); //size of the frame
 		obj.setTitle("Brick Breaker");	//Title of the frame
-		obj.setResizable(false);		// Is frame Resizable or not
-		obj.setVisible(true);			//visiblity of frame
+		obj.setResizable(false);		// Is frame Re-sizable or not
+		obj.setVisible(true);			//Frame visible
 		obj.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		//action on close option
 		
 		obj.add(gamePlay);
