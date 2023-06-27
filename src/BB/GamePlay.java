@@ -17,15 +17,15 @@ import javax.swing.Timer;
 public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	
 	//Game frame size
-	private int frameWidth = 700; 
-	private int frameHeight = 600;
+	private final int frameWidth = 700; 
+	private final int frameHeight = 600;
 	
 	private boolean play =false;
 	private int score =0;
 	
 	//Initial bricks
-	private int row = 10;
-	private int col = 20;
+	private final int row = 10;
+	private final int col = 20;
 	private int totalBricks= row*col;
 	
 	private Timer timer;
@@ -34,16 +34,16 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	//Movable Pedal data
 	private int playerX = frameWidth/2; //x  position of the movable bar
 	private int playerY = frameHeight-50; //y position of the movable bar 
-	private int playerWidth = 100;
-	private int playerHeight = 8;
+	private final int playerWidth = 100;
+	private final int playerHeight = 8;
 	
 	Random random = new Random();
 	
 	//Initial position of the ball
 	private int ballPosX = random.nextInt((frameWidth-50) - 10) + 10;;
 	private int ballPosY = random.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
-	private int ballWidth = 20;
-	private int ballHeight = 20;
+	private final int ballWidth = 20;
+	private final int ballHeight = 20;
 	
 	private int ballXdir=-1;
 	private int ballYdir=-2;

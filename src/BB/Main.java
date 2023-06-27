@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 public class Main {
 	
 	//Game frame size
-	public static int frameWidth = 700;
-	public static int frameHeight = 600;
+	public static final int frameWidth = 700;
+	public static final int frameHeight = 600;
 
 	public static void main(String[] args) {
 		
