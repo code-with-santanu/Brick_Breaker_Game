@@ -21,43 +21,63 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	private final int frameHeight = 600;
 	
 	private boolean play =false;
-	private int score =0;
+	private int score;
 	
 	//Initial bricks
 	private final int row = 10;
 	private final int col = 20;
-	private int totalBricks= row*col;
+	private int totalBricks;
 	
 	private Timer timer;
 	private int delay = 0;	//speed of the movement of the ball
 	
 	//Movable Pedal data
-	private int playerX = frameWidth/2; //x  position of the movable bar
-	private int playerY = frameHeight-50; //y position of the movable bar 
+	private int playerX;	//x  position of the movable bar
+	private int playerY;    //y position of the movable bar 
 	private final int playerWidth = 100;
 	private final int playerHeight = 8;
 	
 	Random random = new Random();
 	
 	//Initial position of the ball
-	private int ballPosX = random.nextInt((frameWidth-50) - 10) + 10;;
-	private int ballPosY = random.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
+	private int ballPosX;
+	private int ballPosY;
 	private final int ballWidth = 20;
 	private final int ballHeight = 20;
 	
-	private int ballXdir=-1;
-	private int ballYdir=-2;
+	private int ballXdir;
+	private int ballYdir;
 	
 	private MapGenerator map;
 	
 	public GamePlay()
 	{
-		map = new MapGenerator(row,col); //Bricks Generate
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 		timer = new Timer(delay , this);
+		
+		initGame();
+	}
+	
+	public void initGame()
+	{
+		map = new MapGenerator(row,col); //Bricks Generate
+		totalBricks = row*col;
+		
+		Random random1 = new Random();
+		ballPosX = random1.nextInt((frameWidth-50) - 10) + 10;;
+		ballPosY = random1.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
+		ballXdir = -1;
+		ballYdir = -2;
+		
+		playerX = frameWidth/2;
+		playerY = frameHeight-50;
+		
+		score =0;
+	
 		timer.start();
+		
 	}
 	
 	public void paint(Graphics g)
@@ -66,7 +86,7 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 		 g.setColor(Color.black);
 		 g.fillRect(1, 1, frameWidth, frameHeight);
 		 
-		 //display of map
+		 //display of bricks
 		 map.draw((Graphics2D)g);
 		 
 		//Border paint
@@ -123,7 +143,7 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
-		timer.start();
+		//timer.start();
 		
 		if(play)
 		{
@@ -235,17 +255,8 @@ public class GamePlay  extends JPanel implements KeyListener,ActionListener {
 			if(play == false)
 			{
 				play = true;
-
-				Random random1 = new Random();
-				ballPosX = random1.nextInt((frameWidth-50) - 10) + 10;;
-				ballPosY = random1.nextInt((frameHeight-100) - (frameHeight-300)) + (frameHeight-300);
 				
-				ballXdir = -1;
-				ballYdir = -2;
-				score =0;
-				totalBricks = row*col;
-				map = new MapGenerator(row,col);
-				
+				initGame();
 				repaint();
 			}
 		}
